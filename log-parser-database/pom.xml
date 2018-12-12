@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+		xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.log.parser</groupId>
+		<artifactId>log-parser</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>log-parser-database</artifactId>
+	<name>database</name>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Database settings -->
+		<db.servername>localhost</db.servername>
+		<db.port>3306</db.port>
+		<db.name>wallet_hub_log_parser</db.name>
+		<db.schema>${db.name}</db.schema>
+		<db.scriptlocation>db/mysql</db.scriptlocation>
+		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+		<jdbc.username>root</jdbc.username>
+		<jdbc.password></jdbc.password>
+		<jdbc.url>jdbc:mysql://${db.servername}:${db.port}/${db.name}?useSSL=false&amp;amp;createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;autoReconnect=true</jdbc.url>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.45</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<finalName>log-parser-database-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>4.1.1</version>
+				<configuration>
+					<driver>${jdbc.driverClassName}</driver>
+					<url>${jdbc.url}</url>
+					<user>${jdbc.username}</user>
+					<password>${jdbc.password}</password>
+					<schemas>
+						<schema>${db.schema}</schema>
+					</schemas>
+					<locations>
+						<location>${db.scriptlocation}</location>
+					</locations>
+					<outOfOrder>true</outOfOrder>
+					<validateOnMigrate>false</validateOnMigrate>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
