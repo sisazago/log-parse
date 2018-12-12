@@ -1,52 +1,61 @@
-package com.log.parser.common.dto.resultdto;
+package com.log.parser.ws.response;
 
-import com.log.parser.common.entity.LogParseRecordEntity;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.log.parser.common.dto.resultdto.LogParseResultDTO;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
-public class LogParseResultDTO {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
+public class LogParseRecordResponse {
 
     /**
      * Log parse record unique identifier.
      * */
+    @ApiModelProperty(name = "id", value = "This value is the record unique identifier", required = true)
     private int id;
 
     /**
      * This date is the date went the log is write
      * */
+    @ApiModelProperty(name = "id", value = "This value is the date of the call", required = true)
     private Date date;
 
     /**
      * This value is the ip address that makes the call
      * */
+    @ApiModelProperty(name = "id", value = "This value is the ip address that made the call", required = true)
     private String ipAddress;
 
     /**
      * This value is the request that is logged
      * */
+    @ApiModelProperty(name = "id", value = "This value is the type of request done", required = true)
     private String request;
 
     /**
      * This value is the status of the call
      * */
+    @ApiModelProperty(name = "status", value = "This value is the status of the call", required = true)
     private String status;
 
     /**
      * This value contains additional information of the call
      * */
+    @ApiModelProperty(name = "id", value = "This value contains additional information of the call", required = true)
     private String userAgent;
 
-    public LogParseResultDTO(){
+    public LogParseRecordResponse(){
         super();
     }
 
-    public LogParseResultDTO(LogParseRecordEntity logParseRecordEntity){
-        this.date = logParseRecordEntity.getRecodDate();
-        this.id = logParseRecordEntity.getId();
-        this.ipAddress = logParseRecordEntity.getIpAddress();
-        this.request = logParseRecordEntity.getRequest();
-        this.status = logParseRecordEntity.getStatus();
-        this.userAgent = logParseRecordEntity.getUserAgent();
+    public LogParseRecordResponse(LogParseResultDTO logParseResultDTO){
+        this.id = logParseResultDTO.getId();
+        this.date = logParseResultDTO.getDate();
+        this.ipAddress = logParseResultDTO.getIpAddress();
+        this.request = logParseResultDTO.getRequest();
+        this.status = logParseResultDTO.getStatus();
+        this.userAgent = logParseResultDTO.getUserAgent();
     }
 
     public int getId() {

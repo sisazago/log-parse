@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface ILogParseService {
 
+    /**
+     * Return all the information of log parse records.
+     * */
     List<LogParseResultDTO> getAllLogParseRecords();
 }
