@@ -1,6 +1,8 @@
 package com.log.parser.core.services.impl;
 
+import com.log.parser.common.dto.LogInfoDTO;
 import com.log.parser.common.dto.resultdto.LogParseResultDTO;
+import com.log.parser.common.dto.resultdto.LogsResultDTO;
 import com.log.parser.common.entity.LogParseRecordEntity;
 import com.log.parser.core.services.ILogParseService;
 import com.log.parser.dao.repo.ILogParseRecordRepository;
@@ -34,5 +36,25 @@ public class LogParseServiceImpl implements ILogParseService {
         logger.trace("[End][LogParseServiceImpl][getAllLogParseRecords]Output:[size={}]", logParseResultList.size());
 
         return logParseResultList;
+    }
+
+    @Override
+    public List<LogsResultDTO> getIpAddressFromLog(LogInfoDTO logInfoDTO) {
+        logger.trace("[Start][LogParseServiceImpl][getIpAddressFromLog]");
+
+        List<LogsResultDTO> logsResultDTOS = new ArrayList<>();
+
+        //Identify if the search is on the period of days or hours.
+        switch (logInfoDTO.getDurationEnum()){
+            case HOURLY:
+                logsResultDTOS = logParseRecordRepository.getAllIpAddressInPeriodOfAnHourByDate(logInfoDTO.getStartDate(), logInfoDTO.getStartDate(), logInfoDTO.getTreadHolder());
+                break;
+            case DAILY:
+                logsResultDTOS = logParseRecordRepository.getAllIpAddressInPeriodOfAnDayByDate(logInfoDTO.getStartDate(), logInfoDTO.getStartDate(), logInfoDTO.getTreadHolder());
+                break;
+        }
+
+        logger.trace("[End][LogParseServiceImpl][getIpAddressFromLog]");
+        return logsResultDTOS;
     }
 }

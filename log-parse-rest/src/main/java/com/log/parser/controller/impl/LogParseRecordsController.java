@@ -1,8 +1,11 @@
 package com.log.parser.controller.impl;
 
 import com.log.parser.common.dto.resultdto.LogParseResultDTO;
+import com.log.parser.common.dto.resultdto.LogsResultDTO;
 import com.log.parser.controller.ILogParseRecordsController;
 import com.log.parser.core.services.ILogParseService;
+import com.log.parser.ws.request.LogParseRecordRequest;
+import com.log.parser.ws.response.LogInformationResponse;
 import com.log.parser.ws.response.LogParseRecordsResponse;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -35,6 +38,21 @@ public class LogParseRecordsController implements ILogParseRecordsController {
 
         LogParseRecordsResponse logParseRecordsResponse = new LogParseRecordsResponse(logParseResultDTOS);
 
+        logger.info("[End][LogParseRecordsController][getAllLogParseRecords]");
+
         return new ResponseEntity<>(logParseRecordsResponse, HttpStatus.OK);
+    }
+
+    @Override
+    @RequestMapping(value = "/ip-addresses-occurrences", method = RequestMethod.GET)
+    public ResponseEntity<List<LogInformationResponse>> getIpAddressesBaseOnInformation(LogParseRecordRequest logParseRecordRequest) {
+        logger.info("[Start][LogParseRecordsController][getIpAddressesBaseOnInformation]");
+
+        List<LogsResultDTO> logsResultDTOS = logParseService.getIpAddressFromLog(logParseRecordRequest.getLogInforDto());
+
+        List<LogInformationResponse> logInformationResponseList = new LogInformationResponse().getLogInformationResponseList(logsResultDTOS);
+
+        logger.info("[End][LogParseRecordsController][getIpAddressesBaseOnInformation]");
+        return new ResponseEntity<>(logInformationResponseList, HttpStatus.OK);
     }
 }

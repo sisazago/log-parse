@@ -1,6 +1,7 @@
 package com.log.parser.ws.request;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.log.parser.common.dto.LogInfoDTO;
 import com.log.parser.common.enums.DurationEnum;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -49,5 +50,15 @@ public class LogParseRecordRequest {
 
     public void setThreadHold(int threadHold) {
         this.threadHold = threadHold;
+    }
+
+    public LogInfoDTO getLogInforDto (){
+        LogInfoDTO logInfoDTO = new LogInfoDTO();
+
+        logInfoDTO.setDurationEnum(this.durationEnum);
+        logInfoDTO.setStartDate(this.startDate);
+        logInfoDTO.setTreadHolder(this.threadHold);
+
+        return logInfoDTO;
     }
 }
