@@ -41,7 +41,7 @@ public class LogParseConsoleApplication implements CommandLineRunner {
 
 		Date startDate = DateUtils.getDateUploadFormat(date);
 
-		if (duration.equals(DurationEnum.DAILY) || duration.equals(DurationEnum.HOURLY)){
+		if (duration.equals(DurationEnum.DAILY.toString()) || duration.equals(DurationEnum.HOURLY.toString())){
 
 			LogInfoDTO logInfoDTO = new LogInfoDTO(startDate, DurationEnum.valueOf(duration), treadHolder);
 
