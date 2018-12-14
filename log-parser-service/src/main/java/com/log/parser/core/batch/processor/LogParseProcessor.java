@@ -23,7 +23,7 @@ public class LogParseProcessor extends AbstractLogParseProcessor implements Item
         logger.trace("[Start][LogParseProcessor][process]");
 
         LogParseRecordEntity logParseRecordEntity = logParseDTO.getLogParseRecordEntity();
-        logParseRecordEntity.setRecodDate(DateUtils.getDate(logParseDTO.getDate()));
+        logParseRecordEntity.setRecordDate(DateUtils.getDate(logParseDTO.getDate()));
 
         logger.trace("[End][LogParseProcessor][process]");
 

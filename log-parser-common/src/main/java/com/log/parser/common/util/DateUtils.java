@@ -10,7 +10,7 @@ public class DateUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(DateUtils.class);
 
-    private static String DATE_FORMAT = "yyyy-MM-dd.HH:mm:ss";
+    private static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     public static Date getDate(String value){
         logger.debug("[Start][DateUtils][getDate]Input:[value{}]", value);

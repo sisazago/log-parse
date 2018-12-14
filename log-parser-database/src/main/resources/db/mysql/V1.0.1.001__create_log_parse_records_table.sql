@@ -6,6 +6,6 @@ CREATE TABLE `log_parse_records` (
   `ip_address` varchar(16) DEFAULT NULL,
   `request` varchar(50) DEFAULT NULL,
   `service_status` varchar(10) DEFAULT NULL,
-  `user_agen` longtext,
+  `user_agent` longtext,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARSET=utf8;

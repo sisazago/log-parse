@@ -41,7 +41,7 @@ public class LogParseResultDTO {
     }
 
     public LogParseResultDTO(LogParseRecordEntity logParseRecordEntity){
-        this.date = logParseRecordEntity.getRecodDate();
+        this.date = logParseRecordEntity.getRecordDate();
         this.id = logParseRecordEntity.getId();
         this.ipAddress = logParseRecordEntity.getIpAddress();
         this.request = logParseRecordEntity.getRequest();

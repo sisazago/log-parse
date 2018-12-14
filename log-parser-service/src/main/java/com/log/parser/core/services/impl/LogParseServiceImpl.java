@@ -1,18 +1,21 @@
 package com.log.parser.core.services.impl;
 
+import com.log.parser.common.common.LogParseQueryConstant;
 import com.log.parser.common.dto.LogInfoDTO;
 import com.log.parser.common.dto.resultdto.LogParseResultDTO;
 import com.log.parser.common.dto.resultdto.LogsResultDTO;
 import com.log.parser.common.entity.LogParseRecordEntity;
 import com.log.parser.core.services.ILogParseService;
 import com.log.parser.dao.repo.ILogParseRecordRepository;
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.FlushModeType;
+import java.util.*;
 
 @Service
 public class LogParseServiceImpl implements ILogParseService {
@@ -21,6 +24,9 @@ public class LogParseServiceImpl implements ILogParseService {
 
     @Autowired
     private ILogParseRecordRepository logParseRecordRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Override
     public List<LogParseResultDTO> getAllLogParseRecords() {
@@ -42,19 +48,26 @@ public class LogParseServiceImpl implements ILogParseService {
     public List<LogsResultDTO> getIpAddressFromLog(LogInfoDTO logInfoDTO) {
         logger.trace("[Start][LogParseServiceImpl][getIpAddressFromLog]");
 
-        List<LogsResultDTO> logsResultDTOS = new ArrayList<>();
+        List<LogsResultDTO> resultList = new ArrayList<>();
+
+        Date endDate = new Date();
 
         //Identify if the search is on the period of days or hours.
         switch (logInfoDTO.getDurationEnum()){
             case HOURLY:
-                logsResultDTOS = logParseRecordRepository.getAllIpAddressInPeriodOfAnHourByDate(logInfoDTO.getStartDate(), logInfoDTO.getStartDate(), logInfoDTO.getTreadHolder());
+                endDate = DateUtils.addHours(logInfoDTO.getStartDate(), 1);
                 break;
             case DAILY:
-                logsResultDTOS = logParseRecordRepository.getAllIpAddressInPeriodOfAnDayByDate(logInfoDTO.getStartDate(), logInfoDTO.getStartDate(), logInfoDTO.getTreadHolder());
+                endDate = DateUtils.addDays(logInfoDTO.getStartDate(), 1);
                 break;
         }
 
+        logParseRecordRepository.findIpAddressByRecordDateBetweenAndTreadHolder(logInfoDTO.getStartDate(), endDate, logInfoDTO.getTreadHolder()).forEach(logsResultDTO -> {
+            LogsResultDTO logResult = new LogsResultDTO(logsResultDTO.getIpAddress(), logsResultDTO.getCallsNumber());
+            resultList.add(logResult);
+        });
+
         logger.trace("[End][LogParseServiceImpl][getIpAddressFromLog]");
-        return logsResultDTOS;
+        return resultList;
     }
 }

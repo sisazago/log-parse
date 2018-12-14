@@ -26,7 +26,7 @@ public class LogParseRecordRequest {
      * This value indicate the number of coincidences to search
      * */
     @ApiModelProperty(name = "threadHold", value = "Number of coincidences to search", required = true)
-    private int threadHold;
+    private long threadHold;
 
     public Date getStartDate() {
         return startDate;
@@ -44,11 +44,11 @@ public class LogParseRecordRequest {
         this.durationEnum = durationEnum;
     }
 
-    public int getThreadHold() {
+    public long getThreadHold() {
         return threadHold;
     }
 
-    public void setThreadHold(int threadHold) {
+    public void setThreadHold(long threadHold) {
         this.threadHold = threadHold;
     }
 

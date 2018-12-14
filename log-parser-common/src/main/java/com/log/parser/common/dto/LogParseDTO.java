@@ -81,6 +81,7 @@ public class LogParseDTO {
         logParseRecordEntity.setIpAddress(this.ipAddress);
         logParseRecordEntity.setStatus(this.status);
         logParseRecordEntity.setUserAgent(this.userAgent);
+        logParseRecordEntity.setRequest(this.request);
 
         return logParseRecordEntity;
     }

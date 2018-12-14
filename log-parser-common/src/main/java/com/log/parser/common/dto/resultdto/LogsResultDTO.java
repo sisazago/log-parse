@@ -10,10 +10,15 @@ public class LogsResultDTO {
     /**
      * This value is the number of calls
      * */
-    private int callsNumber;
+    private long callsNumber;
 
     public LogsResultDTO(){
         super();
+    }
+
+    public LogsResultDTO(String ipAddress, long callsNumber){
+        this.ipAddress = ipAddress;
+        this.callsNumber = callsNumber;
     }
 
     public String getIpAddress() {
@@ -24,11 +29,11 @@ public class LogsResultDTO {
         this.ipAddress = ipAddress;
     }
 
-    public int getCallsNumber() {
+    public long getCallsNumber() {
         return callsNumber;
     }
 
-    public void setCallsNumber(int callsNumber) {
+    public void setCallsNumber(long callsNumber) {
         this.callsNumber = callsNumber;
     }
 }

@@ -22,8 +22,9 @@ public class LogParseWriter extends AbstractLogParseProcessor implements ItemWri
         logger.trace("[Start][LogParseWriter][write]");
 
         try {
-
-            logParseRecordRepository.saveAll(list);
+            list.forEach(logParseEntity -> {
+                logParseRecordRepository.save(logParseEntity);
+            });
 
         }catch (Exception e){
             logger.error("[Error][LogParseWriter][write]There was an error saving the log records.", e);

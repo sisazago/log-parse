@@ -18,7 +18,7 @@ public class LogParseRecordEntity {
      * This date is the date went the log is write
      * */
     @Column(name = "record_date")
-    private Date recodDate;
+    private Date recordDate;
 
     /**
      * This value is the ip address that makes the call
@@ -52,12 +52,12 @@ public class LogParseRecordEntity {
         this.id = id;
     }
 
-    public Date getRecodDate() {
-        return recodDate;
+    public Date getRecordDate() {
+        return recordDate;
     }
 
-    public void setRecodDate(Date recodDate) {
-        this.recodDate = recodDate;
+    public void setRecordDate(Date recordDate) {
+        this.recordDate = recordDate;
     }
 
     public String getIpAddress() {
@@ -91,5 +91,4 @@ public class LogParseRecordEntity {
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
     }
-
 }

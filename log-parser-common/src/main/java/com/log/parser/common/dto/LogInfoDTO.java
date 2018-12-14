@@ -19,7 +19,7 @@ public class LogInfoDTO {
     /**
      * This value indicate the number of occurrences that we want to search.
      * */
-    private int treadHolder;
+    private long treadHolder;
 
     public Date getStartDate() {
         return startDate;
@@ -37,11 +37,11 @@ public class LogInfoDTO {
         this.durationEnum = durationEnum;
     }
 
-    public int getTreadHolder() {
+    public long getTreadHolder() {
         return treadHolder;
     }
 
-    public void setTreadHolder(int treadHolder) {
+    public void setTreadHolder(long treadHolder) {
         this.treadHolder = treadHolder;
     }
 }
