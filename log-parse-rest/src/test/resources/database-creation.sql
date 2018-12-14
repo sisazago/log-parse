@@ -1,0 +1,1 @@
+CREATE DATABASE wallet_hub_log_parser;
