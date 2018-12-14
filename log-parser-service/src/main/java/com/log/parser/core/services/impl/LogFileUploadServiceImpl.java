@@ -90,6 +90,9 @@ public class LogFileUploadServiceImpl implements ILogFileUploadService {
                     .reader(flatFileItemReader)
                     .processor(logProcessor)
                     .writer(logWriter)
+                    .faultTolerant()
+                    .skipLimit(100)
+                    .skip(Exception.class)
                     .build();
         } catch (Exception e) {
             logger.error("[Error][LogFileUploadServiceImpl][logParseStep]There was an error while executing the batch load", e);
