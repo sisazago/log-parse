@@ -14,7 +14,7 @@ All this configurations were made using:
 
 1.) Create an empty schema called `wallet_hub_log_parser`.
 
-2.) Edit the pom.xml file in `database` module. Set the values for `jdbc.username` and `jdbc.password` properties to your database credentials. **Use the user and password for yp_cardnet database**.
+2.) Edit the pom.xml file in `database` module. Set the values for `jdbc.username` and `jdbc.password` properties to your database credentials. **Use the user and password for wallet_hub_log_parser database**.
 
 3.) From the CLI execute:
 
@@ -23,7 +23,7 @@ All this configurations were made using:
 cd log-parser/log-parser-database
 # Tests the connection
 mvn flyway:info
-# Executes the scripts to populate the yp_cardnet database
+# Executes the scripts to populate the wallet_hub_log_parser database
 mvn flyway:migrate
 ```
 
