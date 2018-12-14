@@ -12,6 +12,8 @@ public class DateUtils {
 
     private static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
+    private static String DATE_FORMAT_CONSOLE = "yyyy-MM-dd.HH:mm:ss";
+
     public static Date getDate(String value){
         logger.debug("[Start][DateUtils][getDate]Input:[value{}]", value);
 
@@ -24,5 +26,21 @@ public class DateUtils {
             logger.error("[Error][DateUtils][getDate] Error transforming the string value to a date.", e);
         }
         return date;
+    }
+
+    public static Date getDateUploadFormat (String value){
+
+        logger.debug("[Start][DateUtils][getDateUploadFormat]Input:[value{}]", value);
+
+        Date date = null;
+
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_CONSOLE);
+            date = dateFormat.parse(value);
+        }catch (Exception e){
+            logger.error("[Error][DateUtils][getDateUploadFormat] Error transforming the string value to a date.", e);
+        }
+        return date;
+
     }
 }

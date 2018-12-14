@@ -21,6 +21,16 @@ public class LogInfoDTO {
      * */
     private long treadHolder;
 
+    public LogInfoDTO(){
+        super();
+    }
+
+    public LogInfoDTO(Date startDate, DurationEnum durationEnum, long treadHolder){
+        this.startDate = startDate;
+        this.durationEnum = durationEnum;
+        this.treadHolder = treadHolder;
+    }
+
     public Date getStartDate() {
         return startDate;
     }

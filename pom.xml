@@ -19,6 +19,7 @@
 		<module>log-parser-service</module>
 		<module>log-parser-database</module>
 		<module>log-parse-rest</module>
+		<module>log-parse-console</module>
 	</modules>
 
 	<properties>
